@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Artists </title>
+  </head>
+  <body>
+    <h1>Artists</h1>
+<!--     <a href="/artists/new">Add new Artist</a> -->
+      <form action="/artists" method="POST">
+        Name: <input name="name" type="text" placeholder="Name">
+        Genre:<input name="genre" type="text" placeholder="Genre">
+        Bio:<input name="bio" type="text" placeholder="Type a brief Bio">
+        Wiki:<input name="wiki" type="text" placeholder="Paste Wiki Link">    
+      <input type="submit" value="Save Artist">
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Genre</th>
+          <th>Bio</th>
+          <th>Wiki Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% artists.forEach(function (artist) { %>
+          <tr>
+            <td><%= artist.name %></td>
+            <td><%= artist.genre %></td>
+            <td><%= artist.bio %></td>
+            <td><%= artist.wiki %></td>
+            <td><%= artist.createdAt %></td> 
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
