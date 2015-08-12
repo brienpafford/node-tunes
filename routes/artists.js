@@ -1,7 +1,11 @@
+// Require modules 
+
 var express     = require('express');
 var moment 			= require('moment');
 
 var router 			= express.Router();
+
+// Get from Database
 
 router.get('/', function (req, res) {
 	var collection = global.db.collection('artists');
@@ -21,9 +25,8 @@ router.get('/', function (req, res) {
 	});
 });
 
-// router.get('/new', function (req, res) {
-// 	res.render('templates/artists-new');
-// })
+
+// Post to Database
 
 router.post('/', function (req, res) {
 	var collection = global.db.collection('artists');

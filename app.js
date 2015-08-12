@@ -1,12 +1,12 @@
 // Require modules
 
-var fs 				= require('fs');
-var express		= require('express');
-var morgan 		= require('morgan');
+var fs 					= require('fs');
+var express			= require('express');
+var morgan 			= require('morgan');
 
-var routes 		= require('./routes/index');
-var artists 	= require('./routes/artists');
-var albums 		= require('./routes/songs');
+var routes 			= require('./routes/index');
+var artists 		= require('./routes/artists');
+var albums 			= require('./routes/albums');
 var bodyParser	= require('body-parser');
 
 var app 			= express();

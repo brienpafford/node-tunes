@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Artists </title>
-  </head>
-  <body>
+<% include head %>
+<div class = "container">
     <h1>Artists</h1>
-<!--     <a href="/artists/new">Add new Artist</a> -->
       <form action="/artists" method="POST">
         Name: <input name="name" type="text" placeholder="Name">
         Genre:<input name="genre" type="text" placeholder="Genre">
@@ -34,5 +29,5 @@
         <% }); %>
       </tbody>
     </table>
-  </body>
-</html>
+  </div>
+<% include foot %>
