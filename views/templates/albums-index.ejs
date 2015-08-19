@@ -1,27 +1,15 @@
 <% include head %>
   <div class = "container">
     <h1>Albums</h1>
-      <form action="/albums" method="POST">
-        Title: <input name="title" type="text" placeholder="Title">
-        Year:<input name="year" type="text" placeholder="Year">
-      <input type="submit" value="Save Album">
-    </form>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Year</th>
-          <th>Artist</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% albums.forEach(function (album) { %>
-          <tr>
-            <td><%= albums.title %></td>
-            <td><%= albums.Year %></td>
-            <td><%= albums.artist %></td>
-          </tr>
-        <% }); %>
+      <div class="artist_match">
+        <form action='/albums/new' method='POST'>
+          <div>
+            <label for="album-name">Name of Album:</label>
+            <input type="text" name="album" placeholder="Album">
+          </div>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
       </tbody>
     </table>
     </div>

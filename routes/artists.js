@@ -1,7 +1,6 @@
 // Require modules 
 
 var express     = require('express');
-var moment 			= require('moment');
 
 var router 			= express.Router();
 
@@ -17,7 +16,6 @@ router.get('/', function (req, res) {
 			genre: 			artists.genre,
 			bio: 				artists.bio,
 			wiki: 			artists.wiki,
-			createdAt: 	moment(artists._id.getTimestamp()).fromNow()
 		};
 	});
 
@@ -25,13 +23,33 @@ router.get('/', function (req, res) {
 	});
 });
 
+// Search Database
+
+	router.get('/search', function (req, res) {
+		var collection = global.db.collection('artists');
+
+		collection.find({name: req.query.name}).toArray(function(err, artists) {
+			var formattedArtists = artists.map(function(artists){
+				return{
+					name: 	artists.name,
+					genre: 	artists.genre,
+					bio: 		artists.bio,
+					wiki: 	artists.wiki
+
+				}
+			})
+			res.render('templates/artists-index', {artists: formattedArtists})
+			console.log(formattedArtists)
+		})
+	})
+
 
 // Post to Database
 
 router.post('/', function (req, res) {
 	var collection = global.db.collection('artists');
 
-	console.log(req.body)
+	// console.log(req.body)
 
 	collection.save(req.body, function () {
 		res.redirect('/artists')

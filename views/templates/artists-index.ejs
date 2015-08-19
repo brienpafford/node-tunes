@@ -8,6 +8,13 @@
         Wiki:<input name="wiki" type="text" placeholder="Paste Wiki Link">    
       <input type="submit" value="Save Artist">
     </form>
+    <form action="/artists/search" method= "GET">
+      <div class="form-group">
+          <label for="name">Artist Name:</label>
+          <input name="name" type="text">
+          <button type="submit" class="btn_search">Search</button>
+        </div>
+      </form>
     <table>
       <thead>
         <tr>
@@ -24,7 +31,6 @@
             <td><%= artist.genre %></td>
             <td><%= artist.bio %></td>
             <td><%= artist.wiki %></td>
-            <td><%= artist.createdAt %></td> 
           </tr>
         <% }); %>
       </tbody>

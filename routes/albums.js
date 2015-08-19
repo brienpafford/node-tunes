@@ -2,34 +2,46 @@
 
 var express 			= require('express');
 var router 				= express.Router();
+var ObjectID 			= require('mongodb').ObjectID;
 
+
+
+// Route
+
+router.get('/', function(req, res) {
+    res.render('templates/albums-index');
+});
 
 // Get from Database
 
-router.get('/', function (req, res) {
-	var collection = global.db.collection('albums');
+router.get('/search', function(req, res) {
+  var collection = global.db.collection('artists');
+  var artistName = new RegExp(req.query.name,"i");
+  collection.find({name: artistName}, function(err, cursor) {
+    cursor.toArray(function(err, artists) {
+      res.send(artists);
+    })
+    //res.render('templates/artists');
+  });
 
-	collection.find().toArray(function (err, albums) {
-		var formattedAlbums = albums.map(function (albums) {
-		return {
-			title: 			albums.title,
-			year: 			albums.year,
-			artistID: 	albums.id,
-			};
-		});
-	res.render('templates/albums-index', {albums: formattedAlbums});
-	});
 });
 
 // Post to Database
 
-router.post('/', function (req, res) {
+router.post('/new', function (req, res) {
 	var collection = global.db.collection('albums');
 
-	console.log(req.body)
+	var album = {
+		album: req.body.album,
+		artist: ObjectID(req.body.selected)
+	};
 
-	collection.save(req.body, function () {
-		res.redirect('/albums')
+	collection.save(album, function (err, data) {
+		// console.log(data.ops[0].artists)
+
+		var artistID = data.ops[0].artist;
+		var albumID  = data.ops[0]._id;
+		res.redirect('/')
 	});
 });
 

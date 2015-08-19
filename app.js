@@ -4,6 +4,8 @@ var fs 					= require('fs');
 var express			= require('express');
 var morgan 			= require('morgan');
 
+// Require Routes
+
 var routes 			= require('./routes/index');
 var artists 		= require('./routes/artists');
 var albums 			= require('./routes/albums');
@@ -50,6 +52,7 @@ var app 			= express();
 	app.use('/artists', artists);
 	app.use('/albums', albums);
 
+	app.locals.title = 'nodeTunes'
 
 // // Loggly Logging
 // 	app.use(function (req, res) {
